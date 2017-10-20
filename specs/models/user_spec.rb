@@ -1,5 +1,4 @@
 require File.join(ENV['APP_HOME'], 'specs/test_helper.rb')
-require 'pry'
 
 include Rack::Test::Methods
 

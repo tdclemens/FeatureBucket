@@ -1,5 +1,5 @@
-require 'sinatra'
-require 'mongoid'
+require 'bundler'
+Bundler.require(:default)
 require_relative 'models/user'
 
 set :bind, '172.16.0.8'
