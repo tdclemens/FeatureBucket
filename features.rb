@@ -10,3 +10,7 @@ Mongoid.load! 'mongoid.yml'
 get '/' do
   "Hello World #{params[:name]}".strip
 end
+
+get '/api/v1/users' do
+  User.all.to_json
+end
