@@ -3,12 +3,13 @@ services:
   feature:
     build: .
     ports:
-    - "3000:3000"
+      - "3000:3000"
     volumes:
-    - .:/app
-    - logvolume01:/var/log
+      - .:/app
+      - logvolume01:/var/log
+      - swagger:/swagger
     links:
-    - mongodb
+      - mongodb
     networks:
       mongo_net:
         ipv4_address: 172.16.0.8
@@ -20,8 +21,21 @@ services:
       mongo_net:
         ipv4_address: 172.16.0.9
     command: mongod --bind_ip 127.0.0.1,172.16.0.9
+  swagger:
+    image: swaggerapi/swagger-ui
+    ports:
+      - "80:8080"
+    volumes:
+      - swagger:/swagger
+    environment:
+      - SWAGGER_JSON=/swagger/swagger_spec.json
+      - VALIDATOR_URL=null
+    networks:
+      mongo_net:
+        ipv4_address: 172.16.0.7
 volumes:
   logvolume01: {}
+  swagger: {}
 networks:
   mongo_net:
     driver: bridge
