@@ -4,7 +4,7 @@
 class User
   include Mongoid::Document
   field :email, type: :string
-  field :password, type: :string
+  field :password, type: Mongoid::EncryptedString
   field :first_name, type: :string
   field :last_name, type: :string
 

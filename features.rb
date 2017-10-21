@@ -9,6 +9,7 @@ set :bind, '172.16.0.8'
 set :port, '3000'
 
 Mongoid.load! 'mongoid.yml'
+Mongoid::EncryptedFields.cipher = BCrypt::Password
 
 # Validate and initialize swagger config
 swagger('swagger/users.yml')
