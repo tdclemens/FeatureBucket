@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-source "https://rubygems.org"
+
+source 'https://rubygems.org'
 
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
@@ -15,8 +16,8 @@ end
 
 group :test do
   gem 'factory_bot', '~>4.8.2'
-  gem 'rack-test', '~>0.6.3'
   gem 'ffaker', '~>2.1.0'
+  gem 'rack-test', '~>0.6.3'
 end
 
 group :development, :test do
