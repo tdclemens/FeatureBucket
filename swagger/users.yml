@@ -1,4 +1,8 @@
 swagger: '2.0'
+info:
+  title: "FeatureBucket Swagger"
+  description: "feature service api"
+  version: "1.0.0"
 host: "localhost:3000"
 schemes:
   - "http"
@@ -8,8 +12,26 @@ paths:
       description: "Get users defined in FeatureBucket"
       responses:
         "200":
-          description: Successful query
-info:
-  title: "Swagger Petstore YAML"
-  description: "feature service api"
-  version: "1.0.0"
+          description: "Successful queried users"
+    put:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      description: "Create a user in FeatureBucket"
+      parameters:
+        - name: "email"
+          in: body
+          schema:
+            $ref: '#/definitions/user'
+          description: "request parameters for creating a user"
+          required: true
+      responses:
+        "200":
+          description: "User successfully created"
+definitions:
+  user:
+    type: object
+    properties:
+      email:
+        type: string

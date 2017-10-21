@@ -43,3 +43,10 @@ end
 get '/api/v1/users' do
   User.all.to_json
 end
+
+put '/api/v1/users' do
+  User.create(email: params[:email],
+              password: params[:password],
+              first_name: params[:first_name] || '',
+              last_name: params[:last_name] || '').to_json
+end
