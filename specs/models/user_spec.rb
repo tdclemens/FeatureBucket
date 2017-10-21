@@ -1,4 +1,6 @@
-require File.join(ENV['APP_HOME'], 'specs/test_helper.rb')
+# frozen_string_literal: true
+
+require 'test_helper'
 
 include Rack::Test::Methods
 
@@ -6,13 +8,11 @@ def app
   Sinatra::Application
 end
 
-describe 'Users API' do
-  describe 'GET /users' do
-    describe 'When there are no users' do
-      it 'should return a list of 0 users' do
-        response = get '/api/v1/users'
-        response.body.must_be :==, '[]'
-      end
+describe 'User' do
+  describe '#name' do
+    it 'should return first name joined with last name' do
+      user = FactoryBot.build(:user)
+      user.name.must_be :==, [user.first_name, user.last_name].join(' ')
     end
   end
 end

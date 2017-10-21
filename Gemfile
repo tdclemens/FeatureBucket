@@ -14,8 +14,9 @@ group :development do
 end
 
 group :test do
-  gem 'factory_girl', '~>4.8.1'
+  gem 'factory_bot', '~>4.8.2'
   gem 'rack-test', '~>0.6.3'
+  gem 'ffaker', '~>2.1.0'
 end
 
 group :development, :test do
