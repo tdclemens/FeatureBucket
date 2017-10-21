@@ -4,3 +4,9 @@ development:
       database: mongoid
       hosts:
         - 172.16.0.9:27017
+test:
+  clients:
+    default:
+      database: test
+      hosts:
+        - 172.16.0.9:27017
