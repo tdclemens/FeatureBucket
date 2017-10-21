@@ -1,0 +1,15 @@
+swagger: '2.0'
+host: "localhost:3000"
+schemes:
+  - "http"
+paths:
+  /api/v1/users:
+    get:
+      description: "Get users defined in FeatureBucket"
+      responses:
+        "200":
+          description: Successful query
+info:
+  title: "Swagger Petstore YAML"
+  description: "feature service api"
+  version: "1.0.0"
