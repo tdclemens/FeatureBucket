@@ -13,6 +13,8 @@ paths:
       responses:
         "200":
           description: "Successful queried users"
+          schema:
+            $ref: '#/definitions/user'
     put:
       consumes:
         - application/json
@@ -20,7 +22,7 @@ paths:
         - application/json
       description: "Create a user in FeatureBucket"
       parameters:
-        - name: "email"
+        - name: "user"
           in: body
           schema:
             $ref: '#/definitions/user'
@@ -28,10 +30,21 @@ paths:
           required: true
       responses:
         "200":
-          description: "User successfully created"
+          description: "Successfully created user"
+          schema:
+            $ref: '#/definitions/user'
 definitions:
   user:
     type: object
+    required:
+      - email
+      - password
     properties:
       email:
+        type: string
+      password:
+        type: string
+      last_name:
+        type: string
+      first_name:
         type: string

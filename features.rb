@@ -9,10 +9,12 @@ set :bind, '172.16.0.8'
 set :port, '3000'
 
 Mongoid.load! 'mongoid.yml'
-Mongoid::EncryptedFields.cipher = BCrypt::Password
 
 # Validate and initialize swagger config
+register Sinatra::Swagger::ParamValidator
 swagger('swagger/users.yml')
+
+register Sinatra::Logger
 
 # Write the swagger json to a shared volume
 File.open('/swagger/swagger_spec.json', 'w+') do |f|
@@ -20,9 +22,17 @@ File.open('/swagger/swagger_spec.json', 'w+') do |f|
 end
 
 set :allow_origin, 'http://localhost'
+set :allow_methods, [:get, :post, :put, :options]
+set :allow_credentials, true
+set :max_age, "1728000"
+set :expose_headers, ['Content-Type']
 
 configure do
   enable :cross_origin
+end
+
+before do
+  logger.info("payload='#{params[:body]}'")
 end
 
 # For cross origin requests sometimes an option call is made
@@ -41,12 +51,13 @@ get '/' do
 end
 
 get '/api/v1/users' do
-  User.all.to_json
+  User.all.to_json(except: :password)
 end
 
 put '/api/v1/users' do
-  User.create(email: params[:email],
-              password: params[:password],
-              first_name: params[:first_name] || '',
-              last_name: params[:last_name] || '').to_json
+  payload = params[:body]
+  User.create(email: payload['email'],
+              password: payload['password'],
+              first_name: payload['first_name'] || '',
+              last_name: payload['last_name'] || '').to_json(except: :password)
 end

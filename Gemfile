@@ -11,8 +11,8 @@ gem 'rake', '~>12.1.0'
 gem 'sinatra', '1.4.8'
 gem 'sinatra-cross_origin', '~>0.3.1'
 gem 'sinatra-swagger', '~>0.4.2'
-gem 'mongoid-encrypted-fields', '~>1.3.6'
 gem 'bcrypt', '~>3.1.11'
+gem 'sinatra-logger', '~>0.3.2'
 
 group :development do
   gem 'rubocop', '~>0.51.0'
