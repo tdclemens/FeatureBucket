@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
-  title: "FeatureBucket Swagger"
-  description: "feature service api"
+  title: "FeatureBucket User API Documentation"
+  description: "FeatureBucket user api documentation using swagger."
   version: "1.0.0"
 host: "localhost:3000"
 schemes:
@@ -9,10 +9,12 @@ schemes:
 paths:
   /api/v1/users:
     get:
+      produces:
+        - application/json
       description: "Get users defined in FeatureBucket"
       responses:
         "200":
-          description: "Successful queried users"
+          description: "Successfully queried users"
           schema:
             $ref: '#/definitions/user'
     put:
