@@ -23,9 +23,6 @@ end
 
 set :allow_origin, 'http://localhost'
 set :allow_methods, [:get, :post, :put, :options]
-set :allow_credentials, true
-set :max_age, "1728000"
-set :expose_headers, ['Content-Type']
 
 configure do
   enable :cross_origin
