@@ -35,6 +35,8 @@ paths:
           description: "Successfully created user"
           schema:
             $ref: '#/definitions/user'
+        "400":
+          description: "Bad Request. Validation failed."
 definitions:
   user:
     type: object

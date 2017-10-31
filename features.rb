@@ -52,9 +52,14 @@ get '/api/v1/users' do
 end
 
 put '/api/v1/users' do
-  payload = params[:body]
-  User.create(email: payload['email'],
-              password: payload['password'],
-              first_name: payload['first_name'] || '',
-              last_name: payload['last_name'] || '').to_json(except: :password)
+  begin
+    payload = params[:body]
+    User.create!(email: payload['email'],
+                 password: payload['password'],
+                 first_name: payload['first_name'] || '',
+                 last_name: payload['last_name'] || '').to_json(except: :password)
+  rescue Mongoid::Errors::Validations => e
+    status 400
+    body({ message: e.message }.to_json)
+  end
 end
