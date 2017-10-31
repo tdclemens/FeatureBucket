@@ -13,6 +13,7 @@ gem 'sinatra-cross_origin', '~>0.3.1'
 gem 'sinatra-swagger', '~>0.4.2'
 gem 'bcrypt', '~>3.1.11'
 gem 'sinatra-logger', '~>0.3.2'
+gem 'activemodel', '~>5.1.4'
 
 group :development do
   gem 'rubocop', '~>0.51.0'

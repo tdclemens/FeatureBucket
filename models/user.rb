@@ -4,6 +4,7 @@
 class User
   include Mongoid::Document
   include BCrypt
+  include ActiveModel::Validations
 
   field :email, type: :string
   field :password, type: :string
@@ -11,6 +12,8 @@ class User
   field :last_name, type: :string
 
   before_save :encrypt_password
+  validates_uniqueness_of :email
+  validates :email, format: { with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i }
 
   def name
     [first_name, last_name].join(' ')
@@ -20,5 +23,5 @@ class User
     self.password = Password.create(@password)
   end
 
-  index({ email: 1 }, unique: true, name: 'email_index')
+  index({ email: 1 }, { unique: true, name: 'email_index' } )
 end
